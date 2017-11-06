@@ -6,7 +6,6 @@ class TasksController < ApplicationController
   end
   
   def show
-    set_task
   end
   
   def new
@@ -17,20 +16,18 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     
     if @task.save
-      flash[:success] = 'Task が正常に投稿されました'
+      flash[:success] = 'Task は正常に投稿されました'
       redirect_to @task
     else
-      flash.now[:danger] = 'Task が投稿されませんでした'
+      flash.now[:danger] = 'Task は投稿されませんでした'
       render :new
     end
   end
   
   def edit
-    set_task
   end
   
   def update
-    set_task
     if @task.update(task_params)
       flash[:success] = 'Task は正常に更新されました'
       redirect_to @task
@@ -41,7 +38,6 @@ class TasksController < ApplicationController
   end
   
   def destroy
-    set_task
     @task.destroy
     
     flash[:success] = 'Task は正常に削除されました'
